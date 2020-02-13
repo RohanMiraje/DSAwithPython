@@ -1,13 +1,31 @@
-#!/bin/python3
+"""
+Find minimum and maximum sum of n-1 elements out of n elements from array
+Assume all are positive no, in an array
+Method 1:
+    Find max and min from array and sum of all array elements
+    then
+        max_sum = array_sum - min_ele
+        min_sum = array_sum - max_ele
+    This solution works for negative ele also
+    TC: O(n)
+    SC: O(1)
 
-import math
-import os
-import random
-import re
+Method2 2:
+    Using aux space for prefix sum array
+    Crate prefix sum array and then after use last ele of prefix sum array
+    to find min and max sum of n-1 ele of input array
+    min = MAX
+    max = -MAX
+    Traverse input array:
+        keep track of curr_min and curr_max
+            using prefix_sum_array[end] - curr_val
+        compare them with min and MAX and update
+    TC: O(n)
+    SC: O(n)
+"""
 import sys
 
 
-# Complete the miniMaxSum function below.
 def miniMaxSum(arr):
     prefix_sum_array = get_prefix_sum_array(arr)
     min_sum = sys.maxsize

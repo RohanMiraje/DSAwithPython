@@ -1,22 +1,38 @@
-def find_non_repeated_in_array(array):
-    """
-    assuming sorted array
-    Given array has elements repeated thrice but only element is non repeated
-    find non repeated
-    else if not print -1
-    Input
-        a = [1, 1, 1, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5]
-    output = 2 --->non repeated
-    :param array:
-    :return:
-    method1:
+"""
+Given an array with repeated elements thrice but only element is non-repeated
+Find that non-repeated element
+For only sorted array input:
             using curr element and its second next ele to compare and check if they matches
             keep traversing from i to n
                 if i < n-2 and arr[i] != arr[i+2]:
-                    found
+                    found non-repeated element
                 i += 3
 
-    """
+For unsorted and sorted array:
+    Using aux space array with size of know max no. in input array with default values 0
+    copy input array to new array
+    Traverse an new array array:
+    Use index of elements to mark them as visited
+        if array[abs(arr[i]) >=0:
+            # calculate sum of elements considering all are repeated
+            sum_with_repeated_marked = sum_with_repeated_marked + abs(array[i]) * 3
+            # mark this element as visited by making its occurrence as negative
+            array[abs(array[i])] *= -1
+    now again traverse array to get actual sum with non-repeated ele
+            if array[i] < 0:
+                array[i] = -1 * array[i]
+            sum_with_repeated_marked = sum_with_repeated_marked - array[i]
+    result = sum_with_repeated_marked//2
+
+Pythonic way:
+    Using set:
+        repeated_sum = sum(set(array)) * 3
+        normal_sum = sum(array)
+        non_repeated_ele =  (repeated_sum - normal_sum)//2
+"""
+
+
+def find_non_repeated_in_sorted_array(array):
     n = len(array)
     if n < 3:
         print("invalid input, please check once again with more than or equal to 3 elements")
@@ -24,14 +40,12 @@ def find_non_repeated_in_array(array):
     i = 0
     while i < n:
         if i < n - 2 and array[i] != array[i + 2]:
-            print("non repeated:{}".format(array[i]))
+            print("non_repeated:{}".format(array[i]))
             break
-        print("i:{}".format(i))
         i += 3
     else:
         repeated = -1 if array[n - 3] == array[n - 1] else array[n - 1]
-        print("non repeated:{}".format(repeated))
-    print("i:{}".format(i))
+        print("non_repeated:{}".format(repeated))
 
 
 def find_non_repeated_unsorted(array):
@@ -50,26 +64,20 @@ def find_non_repeated_unsorted(array):
             array[i] = -1 * array[i]
         sum_with_repeated_marked = sum_with_repeated_marked - array[i]
     print(sum_with_repeated_marked)
-    print("Non repeated:{}".format(sum_with_repeated_marked >> 1))
+    print("non_repeated:{}".format(sum_with_repeated_marked >> 1))
 
 
 def pythonist_solution(array):
     repeated_sum = sum(set(array)) * 3
     normal_sum = sum(array)
-    print("non_repeated:{}".format((repeated_sum-normal_sum) >> 1))
+    print("non_repeated:{}".format((repeated_sum - normal_sum) >> 1))
 
 
 if __name__ == '__main__':
-    # a = [2, 2, 3, 2]
     a = [0, 1, 0, 1, 0, 1, 99]
-    nums = [0 for _ in range(max(a)+1)]
+    nums = [0 for _ in range(max(a) + 1)]
     for i in range(len(a)):
         nums[i] = a[i]
-    # a = [1, 1, 1, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5]
-    # a = [1, 1, 1, 2, 2, 2, 4]
-    # a = [1, 3, 3, 3]
-    # find_non_repeated_in_array(a)
-
+    find_non_repeated_in_sorted_array(a)
     find_non_repeated_unsorted(nums)
-    # pythonist_solution(a)
-    # print(max(a))
+    pythonist_solution(a)

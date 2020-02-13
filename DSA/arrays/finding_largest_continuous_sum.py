@@ -1,4 +1,11 @@
 def find_largest_continuous_sum(input_arr):
+    """
+    This solution uses aux space
+    TC: O(n)+O(nLogn) ==>O(nLogn)
+    SC: O(n)
+    :param input_arr:
+    :return:
+    """
     prefix_sum_array = list()
     prefix_sum = 0
     for val in input_arr:
@@ -9,6 +16,16 @@ def find_largest_continuous_sum(input_arr):
 
 
 def find_max(input_arr):
+    """
+    This is better approach
+    TC: O(n)
+    SC:O(1)
+    Idea is to decide max of curr_sum and curr_ele while traversing array
+        For curr_sum add curr_ele to it and compare with curr_ele
+        then update curr_sum as max of this comparison
+    :param input_arr:
+    :return:
+    """
     curr_max = max_sum = input_arr[0]
     i = 1
     while i < len(input_arr):

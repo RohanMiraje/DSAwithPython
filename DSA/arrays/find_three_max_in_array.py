@@ -1,8 +1,6 @@
 import random
 import sys
 
-input_array = [random.randrange(1, 50, 1) for i in range(10)]
-
 
 def find_first_three_max(arr):
     first = -sys.maxsize
@@ -26,7 +24,6 @@ def find_first_three_max(arr):
 
 
 if __name__ == "__main__":
+    input_array = [random.randrange(1, 50, 1) for i in range(10)]
     print("Input array:{}".format(input_array))
     find_first_three_max(input_array)
-    if 'a' > 'b':
-        print()

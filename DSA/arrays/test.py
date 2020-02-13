@@ -70,7 +70,7 @@ def rotate_left_by_k_using_juggling_algorithm(arr, k):
 
 
 def find_max_sum_in_array():
-    from practise.template import template
+    from DSA.template import template
     array = template.get_random_array(10, -20, 20)
     prefix_array = get_prefix_sum_array(array)
     max_sum = 0

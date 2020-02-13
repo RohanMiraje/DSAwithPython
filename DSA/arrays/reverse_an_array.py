@@ -1,4 +1,4 @@
-from arrays.input_header import input_list, input_array
+from DSA.arrays.input_header import input_array
 
 
 def iterative_reverse(arr):
