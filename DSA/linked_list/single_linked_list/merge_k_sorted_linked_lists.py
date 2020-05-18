@@ -6,7 +6,7 @@ Method 1 (Simple)
 A Simple Solution is to initialize result as first list.
 Now traverse all lists starting from second list.
 Insert every node of currently traversed list into result in a sorted way.
-TC: O(N2) where N is total number of nodes, i.e., N = kn.
+TC: O(N^2) where N is total number of nodes, i.e., N = kn.
 SC: O(1)
 
 Method 2 (Using Min Heap)
@@ -14,7 +14,7 @@ A Better solution is to use Min Heap based solution
 Step1: Create min heap of size k with all heads of k lists (Use priority queue(pq))
         create head pointer for result list
         and last pointer, to add new node at last of result list
-Step2: Now iterate unit queue not become empty:
+Step2: Now iterate until queue not become empty:
             take top out of pq:
                 if it has next node:
                     push it to pq

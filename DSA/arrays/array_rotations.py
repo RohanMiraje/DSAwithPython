@@ -61,13 +61,13 @@ def rotate_array_clockwise_by_k_positions(arr, k):
 
 def reversal_array_algorithm(arr, k):
     """
-    Idea to use recursive reversal algorithm to left rotation
+    Idea to use reversal algorithm to left rotation
     TC-O(n)
-    SC-O(n)
-    It reverses first k elements
-    then it reverses next n-k elements
-    and after than it reverses all n elements
-    so array will be rotated left by k elements
+    SC-O(1)
+    1.It reverses first k elements
+    2.then it reverses next n-k elements
+    3.and after than it reverses all n elements
+        so array will be rotated left by k elements
     :param arr: list, input array
     :param k: int,
     :return:

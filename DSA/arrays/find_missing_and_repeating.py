@@ -65,6 +65,7 @@ def find_missing_and_repeating_using_count_array(array):
     temp = [0 for _ in range(n)]  # aux count array
     repeat = 0
     for i in array:
+        # array values would be 1 t0 n only as input
         if temp[i - 1] == 0:
             temp[i - 1] = 1
         elif temp[i - 1] == 1:

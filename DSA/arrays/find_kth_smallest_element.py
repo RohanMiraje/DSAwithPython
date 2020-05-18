@@ -9,7 +9,7 @@ Method 1 (Simple Solution)
 
 Method 2 (Using Min Heap – HeapSelect)
     We can find k’th smallest element in time complexity better than O(N Log N).
-    A simple optomization is to create a Min Heap of the given n elements
+    A simple optimization is to create a Min Heap of the given n elements
      and call extractMin() k times.
 
 Method 3 (Using Max-Heap)

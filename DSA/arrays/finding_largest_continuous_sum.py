@@ -1,18 +1,4 @@
-def find_largest_continuous_sum(input_arr):
-    """
-    This solution uses aux space
-    TC: O(n)+O(nLogn) ==>O(nLogn)
-    SC: O(n)
-    :param input_arr:
-    :return:
-    """
-    prefix_sum_array = list()
-    prefix_sum = 0
-    for val in input_arr:
-        prefix_sum += val
-        prefix_sum_array.append(prefix_sum)
-    prefix_sum_array.sort()
-    print(prefix_sum_array[-1])
+from DSA.arrays.template import get_random_array
 
 
 def find_max(input_arr):
@@ -37,5 +23,5 @@ def find_max(input_arr):
 
 
 if __name__ == '__main__':
-    find_largest_continuous_sum([1, 2, -1, 3, 4, 10, 10, -10, 1])
-    find_max([1, 2, -1, 3, 4, 10, 10, -10, 1])
+    input_array = get_random_array(10, -5, 10)
+    find_max(input_array)

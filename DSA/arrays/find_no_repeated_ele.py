@@ -11,7 +11,7 @@ For only sorted array input:
 For unsorted and sorted array:
     Using aux space array with size of know max no. in input array with default values 0
     copy input array to new array
-    Traverse an new array array:
+    Traverse new array:
     Use index of elements to mark them as visited
         if array[abs(arr[i]) >=0:
             # calculate sum of elements considering all are repeated
