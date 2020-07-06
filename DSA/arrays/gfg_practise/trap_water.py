@@ -22,6 +22,15 @@ better approach is using aux space for storing left max and right max for each e
     ->TC = O(n), SC = O(n)
     Idea is to crate left and right max arrays for each ele of i/p arr
         then use res += min(left, right) - 1
+
+Space Optimization:O(1)
+Instead of maintaining two arrays of size n for storing left and right max of each element,
+    maintain two variables to store the maximum till that point.
+    Since water trapped at any
+        element = min(max_left, max_right) – arr[i].
+        Calculate water trapped on smaller element out of arr[start] and arr[end] first
+        and move the pointers till start doesn't cross end.
+
 """
 
 
@@ -49,6 +58,7 @@ def get_left_max_arr(array):
     for i, val in enumerate(array):
         if i == n - 1 or val > curr_max:
             arr[i] = val
+            curr_max = arr[i]
         else:
             arr[i] = curr_max
     return arr
@@ -63,12 +73,39 @@ def get_right_max_arr(array):
     for i in range(n - 1, -1, -1):
         if array[i] > curr_max:
             arr[i] = array[i]
+            curr_max = arr[i]
         else:
             arr[i] = curr_max
     return arr
 
 
+def trap_water_calculate(array):
+    n = len(array)
+    if n < 3:
+        return 0
+    start = 0
+    end = n - 1
+    l_max = 0
+    r_max = 0
+    result = 0
+    while start <= end:
+        if array[start] < array[end]:
+            if array[start] > l_max:
+                l_max = array[start]
+            else:
+                result += l_max - array[start]
+            start += 1
+        else:
+            if array[end] > r_max:
+                r_max = array[end]
+            else:
+                result += r_max - array[end]
+            end -= 1
+    return result
+
+
 if __name__ == '__main__':
-    # input_arr = [3, 0, 1, 2, 5]
-    input_arr = [2, 0, 2]
-    print(get_trap_water_units(input_arr))
+    input_arr = [3, 0, 1, 2, 5]
+    # input_arr = [2, 0, 2]
+    # print(get_trap_water_units(input_arr))
+    print(trap_water_calculate(input_arr))
