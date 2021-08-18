@@ -6,9 +6,7 @@ def rotate_array_left_by_one(input_array):
     :return:
     """
     temp = input_array[0]
-    for index, val in enumerate(input_array):
-        if index == len(input_array) - 1:
-            break
+    for index in range(0, len(input_array) - 1, 1):  # range(start, stop:n-1(to avoid index error), step)
         input_array[index] = input_array[index + 1]
     input_array[-1] = temp
 
@@ -27,7 +25,7 @@ def rotate_array_left_by_k_positions(arr, k):
     if k <= 0:
         return
     print("rotate_array_left_by_{}_positions".format(k))
-    for i in range(k):
+    for _ in range(k):
         rotate_array_left_by_one(arr)
     print(arr)
 
@@ -51,7 +49,7 @@ def rotate_array_clockwise_by_k_positions(arr, k):
     if k <= 0:
         return
     print("rotate_array_clockwise_by_{}_positions".format(k))
-    for i in range(k):
+    for _ in range(k):
         temp = arr[-1]
         for index in range(-1, -len(arr), -1):
             arr[index] = arr[index - 1]
@@ -79,6 +77,7 @@ def reversal_array_algorithm(arr, k):
 
 
 def rotate_array(arr, start, end):
+    # simple two pointer swapping technique used in school
     while start < end:
         arr[start], arr[end] = arr[end], arr[start]
         start += 1
@@ -86,6 +85,8 @@ def rotate_array(arr, start, end):
 
 
 def rotate_left_by_k_pos_using_aux_space(arr, k):
+    #  TC: O(n)
+    # SC: O(n)
     temp = [arr[i] for i in range(k)]  # store first k elements
     i = 0
     while i < len(arr) - k:
@@ -121,39 +122,69 @@ def rotate_left_by_k_using_juggling_algorithm(arr, k):
 
 
 def get_gcd(a, b):
+    # import math could be used like return math.gcd(x, y)
     if b == 0:
         return a
     return get_gcd(b, a % b)
 
+
+"""
+# Python code to demonstrate naive
+# method to compute gcd ( Loops )
+  
+  
+def get_gcd(x, y):
+  
+    if x > y:
+        small = y
+    else:
+        small = x
+    for i in range(1, small+1):
+        if((x % i == 0) and (y % i == 0)):
+            gcd = i
+              
+    return gcd
+    
+# Python code to demonstrate naive
+# method to compute gcd ( Euclidean algorithm )
+  
+  
+def get_gcd(x, y):
+  
+   while(y):
+       x, y = y, x % y
+  
+   return x
+"""
 
 if __name__ == '__main__':
     array = [i for i in range(1, 8)]
     print("Input array:{}".format(array))
     import copy
 
-    test_arr = copy.deepcopy(array)
-    rotate_array_left_by_k_positions(test_arr, 2)
-    test_arr = copy.deepcopy(array)
-    rotate_array_clockwise_by_k_positions(test_arr, 2)
-    test_arr = copy.deepcopy(array)
-    reversal_array_algorithm(test_arr, 3)
-    test_arr = copy.deepcopy(array)
-    rotate_left_by_k_pos_using_aux_space(test_arr, 3)
+    # test_arr = copy.deepcopy(array)
+    # rotate_array_left_by_k_positions(test_arr, 2)
+    # test_arr = copy.deepcopy(array)
+    # rotate_array_clockwise_by_k_positions(test_arr, 2)
+    # test_arr = copy.deepcopy(array)
+    # reversal_array_algorithm(test_arr, 3)
+    # test_arr = copy.deepcopy(array)
+    # rotate_left_by_k_pos_using_aux_space(test_arr, 3)
     test_arr = copy.deepcopy(array)
     rotate_left_by_k_using_juggling_algorithm(test_arr, 3)
     """
     rotate_left_by_k_using_juggling_algorithm
     [1, 2, 3, 4, 5, 6], 2
     Step 1 i=0, j=i, temp = arr[0]:
-        j = 0    s= j+2(0+2) arr[j(0)] = arr[s(2)] j = s(2)
-        j = 2    s= j+2(2+2) arr[j(2)] = arr[s(4)] j = s(4)
+        j = 0    s= j+2(0+2) arr[j(0)] = arr[s(2)] j = s(2) -->[3, 2, 3, 4, 5, 6]
+        j = 2    s= j+2(2+2) arr[j(2)] = arr[s(4)] j = s(4) -->[3, 2, 5, 4, 5, 6]
         j = 4    s= j+2(4+2) if s(6)>=len(arr)(6): s= s-len(arr)(0) s(0)==i(0): break
-        arr[j(4)] = temp(arr[0])
+        arr[j(4)] = temp(arr[0]) -->[3, 2, 5, 4, 1, 6]
 
     Step 2 i=1, j=i, temp = arr[1]:
-        j = 1    s= j+2(1+2) arr[j(1)] = arr[s(3)] j = s(3)
-        j = 3    s= j+2(3+2) arr[j(3)] = arr[s(5)] j = s(5)
+        j = 1    s= j+2(1+2) arr[j(1)] = arr[s(3)] j = s(3)  -->[3, 4, 5, 4, 1, 6]
+        j = 3    s= j+2(3+2) arr[j(3)] = arr[s(5)] j = s(5) -->[3, 4, 5, 6, 1, 6]
         j = 5    s= j+2(5+2) if s(7)>=len(arr)(6): s= s-len(arr)(1) s(1)==i(1): break
-        arr[j(5)] = temp(arr[1])
+        arr[j(5)] = temp(arr[1]) -->[3, 4, 5, 6, 1, 2]
 
     """
